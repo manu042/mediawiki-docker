@@ -1,0 +1,46 @@
+version: '3.5'
+
+services:
+  mediawiki:
+    build:
+      context: build
+      dockerfile: Dockerfile
+    image: mediawiki-docker
+    environment:
+      VIRTUAL_HOST: example.com
+      LETSENCRYPT_HOST: example.com
+    volumes:
+      - mediawiki-images:/var/www/html/images
+    networks:
+      - frontend
+      - backend
+    container_name: mediawiki
+    restart: unless-stopped
+
+  database:
+    image: mariadb
+    environment:
+      MYSQL_DATABASE: my_wiki
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: example
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    networks:
+      - backend
+    container_name: mariadb
+    restart: unless-stopped
+
+
+volumes:
+  mediawiki-images:
+  mediawiki-media:
+  mariadb-data:
+
+networks:
+  frontend:
+    external: false
+    name: nginx-network
+  backend:
+    external: false
+    name: db-network
