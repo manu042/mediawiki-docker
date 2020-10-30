@@ -22,7 +22,7 @@ docker-compose up -d
 5. Upload LocalSettings.php to your web server e.g. with scp
 6. Copy LocalSettings.php into your mediawiki container
 ```
-docker cp LocalSettings.php mediawiki:/var/www/html/LocalSettings.php
+docker cp LocalSettings.php mediawiki:/var/www/html/wiki/LocalSettings.php
 ```
 
 And you're done. Have fun with your new Wiki!
