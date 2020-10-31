@@ -2,6 +2,7 @@ FROM nginx:1.19.3
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
+    git \
     nano \ 
     php7.3 \
     php7.3-apcu \
@@ -46,5 +47,7 @@ COPY nginx/wiki.conf /etc/nginx/conf.d/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Copy wiki logo
 COPY --chown=www-data wiki.png /var/www/html/mediawiki/resources/assets/
+
+WORKDIR /var/www/html/mediawiki
 
 CMD ["/usr/bin/supervisord"]

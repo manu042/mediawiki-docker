@@ -13,16 +13,23 @@ automated creation, renewal and use of Let's Encrypt certificates for proxied Do
 
 
 1. Clone this repository
-2. Replace VIRTUAL_HOST and LETSENCRYPT_HOST in docker-compose.yml with your sub/domain
-3. Run it with docker-compose
+2. Replace VIRTUAL_HOST and LETSENCRYPT_HOST in docker-compose.yml with your sub-/domain
+3. Insert a proper password for MYSQL_PASSWORD in docker-compose.yml
+5. Run it with docker-compose
 ```
 docker-compose up -d
 ```
-4. Point your web browser to your new hosted wiki and follow the instruction on the setup screen.
-5. Upload LocalSettings.php to your web server e.g. with scp
-6. Copy LocalSettings.php into your mediawiki container
+6. Point your web browser to your new hosted wiki and follow the instruction on the setup screen.
+   - Note: You have to use "mariadb" for Database host.  
+7. Upload LocalSettings.php to your web server e.g. with scp
+   - To get short URL's add the following to lines to your LocalSettings.php
 ```
-docker cp LocalSettings.php mediawiki:/var/www/html/wiki/LocalSettings.php
+$wgArticlePath = "/wiki/$1";
+$wgUsePathInfo = true;
+```
+8. Copy LocalSettings.php into your mediawiki container
+```
+docker cp LocalSettings.php mediawiki:/var/www/html/mediawiki/LocalSettings.php
 ```
 
 And you're done. Have fun with your new Wiki!
