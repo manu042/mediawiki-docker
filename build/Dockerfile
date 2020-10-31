@@ -27,16 +27,16 @@ RUN apt-get update && \
 # 2. Create dir /run/php and make www-data the owner
 # 3. Set upload_max_filesize to 25M
 # 4. Set post_max_size to 25M
-# 5. Create directory /var/www/html/wiki
+# 5. Create directory /var/www/html/mediawiki
 RUN rm /etc/nginx/conf.d/default.conf && \
     mkdir /run/php/ && chown -R www-data:www-data /run/php && \
     sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 25M/g' /etc/php/7.3/fpm/php.ini && \
     sed -i 's/post_max_size = 8M/post_max_size = 25M/g' /etc/php/7.3/fpm/php.ini && \
-    mkdir -p /var/www/html/wiki
+    mkdir -p /var/www/html/mediawiki
 
-# Download mediawiki and extract it to /var/www/html/wiki
+# Download mediawiki and extract it to /var/www/html/mediawiki
 RUN wget -q https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.0.tar.gz -O mediawiki.tar.gz && \
-    tar -zxf mediawiki.tar.gz --strip 1 -C /var/www/html/wiki && \
+    tar -zxf mediawiki.tar.gz --strip 1 -C /var/www/html/mediawiki && \
     chown -R www-data:www-data /var/www
 
 # Copy nginx config files
@@ -45,6 +45,6 @@ COPY nginx/wiki.conf /etc/nginx/conf.d/
 # Copy supervisord config file
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Copy wiki logo
-COPY --chown=www-data wiki.png /var/www/html/wiki/resources/assets/
+COPY --chown=www-data wiki.png /var/www/html/mediawiki/resources/assets/
 
 CMD ["/usr/bin/supervisord"]
