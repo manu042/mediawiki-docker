@@ -2,6 +2,20 @@
 mediawiki-docker creates a container with mediawiki and a database container with mariadb.
 The complete setup takes no longer than 30 minutes.
 
+
+## Features 
+- [Mediawiki 1.35](https://www.mediawiki.org/wiki/MediaWiki)
+  - Configured with [Short URLs](https://www.mediawiki.org/wiki/Manual:Short_URL)
+- [Nginx](https://nginx.org/)
+- [MariaDB](https://mariadb.org/)
+- [Php-FPM](https://www.php.net/manual/de/install.fpm.php)
+- [Git](https://git-scm.com/)
+
+
+## Extensions
+- [Bundled Extensions](https://www.mediawiki.org/wiki/Bundled_extensions_and_skins)
+- Additional extensions coming soon
+
 ## Usage
 Ideally the container should be executed in combination with [nginx-proxy](https://github.com/nginx-proxy/nginx-proxy) and 
 [letsencrypt-nginx-proxy-companion](https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion).
