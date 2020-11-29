@@ -19,6 +19,7 @@ RUN apt-get update && \
     php7.3-xml \
     php7.3-xmlrpc \
     php7.3-zip \
+    python3 \
     supervisor \
     tar \
     wget \
