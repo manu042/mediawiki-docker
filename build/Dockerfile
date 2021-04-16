@@ -2,6 +2,7 @@ FROM nginx:1.19.3
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
+    composer \
     git \
     nano \ 
     php7.3 \
@@ -40,6 +41,12 @@ RUN rm /etc/nginx/conf.d/default.conf && \
 RUN wget -q https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.0.tar.gz -O mediawiki.tar.gz && \
     tar -zxf mediawiki.tar.gz --strip 1 -C /var/www/html/mediawiki && \
     chown -R www-data:www-data /var/www
+
+# Download Extensions TemplateStyles and Math
+RUN git clone --single-branch --branch REL1_35 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git /var/www/html/mediawiki/extensions/TemplateStyles && \
+    git clone --single-branch --branch REL1_35 https://github.com/wikimedia/mediawiki-extensions-Math /var/www/html/mediawiki/extensions/Math && \
+    cd /var/www/html/mediawiki/extensions/TemplateStyles && composer install --no-dev && \
+    cd /var/www/html/mediawiki/extensions/Math && composer install --no-dev
 
 # Copy nginx config files
 COPY ["nginx/general.conf", "nginx/nginx.conf", "nginx/php_fastcgi.conf", "nginx/security.conf", "/etc/nginx/"]
