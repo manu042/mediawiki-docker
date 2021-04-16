@@ -14,7 +14,10 @@ The complete setup takes no longer than 30 minutes.
 
 ## Extensions
 - [Bundled Extensions](https://www.mediawiki.org/wiki/Bundled_extensions_and_skins)
-- Additional extensions coming soon
+- Additional extensions:
+  - [Math](https://www.mediawiki.org/wiki/Extension:Math)
+  - [TemplateStyles](https://www.mediawiki.org/wiki/Extension:TemplateStyles)
+
 
 ## Usage
 Ideally the container should be executed in combination with [nginx-proxy](https://github.com/nginx-proxy/nginx-proxy) and 
