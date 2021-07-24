@@ -4,7 +4,7 @@ The complete setup takes no longer than 30 minutes.
 
 
 ## Features 
-- [Mediawiki 1.35](https://www.mediawiki.org/wiki/MediaWiki)
+- [Mediawiki 1.36.1](https://www.mediawiki.org/wiki/MediaWiki)
   - Configured with [Short URLs](https://www.mediawiki.org/wiki/Manual:Short_URL)
 - [Nginx](https://nginx.org/)
 - [MariaDB](https://mariadb.org/)
