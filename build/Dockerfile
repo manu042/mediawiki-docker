@@ -1,4 +1,4 @@
-FROM nginx:1.19.3
+FROM nginx:1.21.1
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
@@ -38,13 +38,13 @@ RUN rm /etc/nginx/conf.d/default.conf && \
     mkdir -p /var/www/html/mediawiki
 
 # Download mediawiki and extract it to /var/www/html/mediawiki
-RUN wget -q https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.0.tar.gz -O mediawiki.tar.gz && \
+RUN wget -q https://releases.wikimedia.org/mediawiki/1.36/mediawiki-1.36.1.tar.gz -O mediawiki.tar.gz && \
     tar -zxf mediawiki.tar.gz --strip 1 -C /var/www/html/mediawiki && \
     chown -R www-data:www-data /var/www
 
 # Download Extensions TemplateStyles and Math
-RUN git clone --single-branch --branch REL1_35 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git /var/www/html/mediawiki/extensions/TemplateStyles && \
-    git clone --single-branch --branch REL1_35 https://github.com/wikimedia/mediawiki-extensions-Math /var/www/html/mediawiki/extensions/Math && \
+RUN git clone --single-branch --branch REL1_36 https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git /var/www/html/mediawiki/extensions/TemplateStyles && \
+    git clone --single-branch --branch REL1_36 https://github.com/wikimedia/mediawiki-extensions-Math /var/www/html/mediawiki/extensions/Math && \
     cd /var/www/html/mediawiki/extensions/TemplateStyles && composer install --no-dev && \
     cd /var/www/html/mediawiki/extensions/Math && composer install --no-dev
 
